@@ -5,65 +5,103 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Form</title>
   <style>
+    body {
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h2 {
+      color: #333;
+      text-align: center;
+    }
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    fieldset {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
     .error {
       color: red;
     }
-    body{
-        background-color:rgba(,156,0, 0.5);
+    input[type="submit"] {
+      background-color: #007b5e;
+      color: #fff;
+      padding: 10px 15px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+    }
+    input[type="submit"]:hover {
+      background-color: #005841;
     }
   </style>
 </head>
 <body>
-
   <h2>Form Validation</h2>
-
   <form action="#" method="post">
     <fieldset>
-    <legend>Name</legend>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
-    <span class="error">* Please enter your name</span>
-    <br></fieldset>
-    <fieldset>
-        <legend>Email</legend>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    <span class="error">* Please enter a valid email address</span>
-    <br></fieldset>
-    <fieldset>
-        <legend>Phone</legend>
-    <label for="phone">Phone:</label>
-    <input type="tel" id="phone" name="phone" placeholder="e.g., 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
-    <span class="error">* Please enter a valid phone number (format: 123-456-7890)</span>
-    <br>
+      <legend>Name</legend>
+      <input type="text" id="name" name="name" required>
     </fieldset>
     <fieldset>
-        <legend>Subject</legend>
-    <label for="subject">Subject:</label>
-    <input type="text" id="subject" name="subject" required>
-    <span class="error">* Please enter the subject</span>
-    <br>
+      <legend>Email</legend>
+      <input type="email" id="email" name="email" required>
     </fieldset>
     <fieldset>
-        <legend>Address</legend>
-    <label for="message">Address:</label>
-    <textarea id="message" name="message" required></textarea>
-    <span class="error">* Please enter your message</span>
-    <br>
+      <legend>Phone</legend>
+      <input type="tel" id="phone" name="phone" placeholder="e.g., 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
     </fieldset>
     <fieldset>
-        <legend>Gender</legend>
-    <input type="radio" name="gender" id="male">
-    <label for="male">Male</label>
-    <input type="radio" name="gender" id="female">
-    <label for="female">Female</label>
-    <br>
-</fieldset>
-<label for="newsletter">Full Stack Developer:</label>
-<input type="checkbox" id="newsletter" name="newsletter">
-<br>
+      <legend>Subject</legend>
+      <input type="text" id="subject" name="subject" required>
+    </fieldset>
+    <fieldset>
+      <legend>Address</legend>
+      <textarea id="message" name="message" required></textarea>
+    </fieldset>
+    <fieldset>
+      <legend>Gender</legend>
+      <input type="radio" name="gender" id="male">
+      <label for="male">Male</label>
+      <input type="radio" name="gender" id="female">
+      <label for="female">Female</label>
+    </fieldset>
+    <fieldset>
+      <legend>Country</legend>
+      <input list="Countries" placeholder="Country Name">
+      <datalist id = "Countries">
+      <option value="USA">
+      <option value="Greece">
+      <option value="UK">
+      <option value="India">
+      </datalist>
+    </fieldset>
+    <fieldset>
+      <legend>Age</legend>
+      <input type="number" name="Age" value="" required min="18" max="75">
+    </fieldset>
+    <fieldset>
+      <legend>Date Of Birth</legend>
+      <input type="date">
+    </fieldset>
+     <fieldset>
+      <legend>Full Stack Developer</legend>
+    <input type="checkbox">
+    </fieldset>
     <input type="submit" value="Submit">
   </form>
-
 </body>
 </html>
