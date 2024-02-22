@@ -1,0 +1,156 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Form Validation Using JS Events And Objects</title>
+        <style>
+            body {
+              background-color: #f4f4f4;
+              font-family: Arial, sans-serif;
+              margin: 20px;
+            }
+            h2 {
+              color: #333;
+              text-align: center;
+            }
+            form {
+              max-width: 600px;
+              margin: 0 auto;
+            }
+            fieldset {
+              margin-bottom: 20px;
+            }
+            label {
+              display: block;
+              margin-bottom: 8px;
+              font-weight: bold;
+            }
+            input,
+            textarea {
+              width: 100%;
+              padding: 10px;
+              margin-bottom: 10px;
+              box-sizing: border-box;
+            }
+            .error {
+              color: red;
+            }
+            input[type="submit"] {
+              background-color: #007b5e;
+              color: #fff;
+              padding: 10px 15px;
+              cursor: pointer;
+              border: none;
+              border-radius: 5px;
+            }
+            input[type="submit"]:hover {
+              background-color: #005841;
+            }
+          </style>
+    </head>
+    <body>
+        <h2>Form Validation Using JS Events And Objects</h2>
+        <form id="myForm" action="#" method="post">
+            <fieldset>
+                <legend>Name</legend>
+                <input type="text" id="name" name="name">
+              </fieldset>
+              <fieldset>
+                <legend>Email</legend>
+                <input type="email" id="email" name="email">
+              </fieldset>
+              <fieldset>
+                <legend>Phone</legend>
+                <input type="tel" id="phone" name="phone" placeholder="e.g., 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+              </fieldset>
+              <fieldset>
+                <legend>Subject</legend>
+                <input type="text" id="subject" name="subject">
+              </fieldset>
+              <fieldset>
+                <legend>Address</legend>
+                <textarea id="message" name="message"></textarea>
+              </fieldset>
+              <fieldset>
+                <legend>Gender</legend>
+                <input type="radio" name="gender" id="male">
+                <label for="male">Male</label>
+                <input type="radio" name="gender" id="female">
+                <label for="female">Female</label>
+              </fieldset>
+              <fieldset>
+                <legend>Country</legend>
+                <input list="Countries" placeholder="Country Name">
+                <datalist id = "Countries">
+                <option value="USA">
+                <option value="Greece">
+                <option value="UK">
+                <option value="India">
+                </datalist>
+              </fieldset>
+              <fieldset>
+                <legend>Age</legend>
+                <input type="number" name="Age" id="age" value="" min="18" max="75">
+              </fieldset>
+              <fieldset>
+                <legend>Date Of Birth</legend>
+                <input type="date">
+              </fieldset>
+               <fieldset>
+                <legend>Full Stack Developer</legend>
+                <input type="checkbox" id="fullStack">
+              </fieldset>
+              <input type="submit" value="Submit">
+            </form>
+            <script>
+              document.getElementById("name").addEventListener("click",function(){alert("please fill out appropriate details");});
+              function myFunction(x){
+                x.style.background="yellow";
+              }
+              function validateForm(event) {
+      event.preventDefault(); 
+      var nameInput = document.getElementById('name');
+      var emailInput = document.getElementById('email');
+      var phoneInput = document.getElementById('phone');
+      var subjectInput = document.getElementById('subject');
+      var messageInput = document.getElementById('message');
+      var dobInput = document.getElementById('dob');
+      var maleInput = document.getElementById('male');
+      var femaleInput = document.getElementById('female');
+      var fullStackInput = document.getElementById('fullStack');
+      var ageInput = document.getElementById('age');
+      var errors = {};
+      if (nameInput.value.trim() === '') {
+        errors.name = 'Name is required';
+      }
+      if (emailInput.value.trim() === '') {
+        errors.email = 'Email is required';
+      }
+      if (phoneInput.value.trim() === '') {
+        errors.phone = 'Phone is required';
+      }
+      if (subjectInput.value.trim() === '') {
+        errors.subject = 'Subject is required';
+      }
+      if (messageInput.value.trim() === '') {
+        errors.message = 'Message is required';
+      }
+      if (!maleInput.checked && !femaleInput.checked) {
+        errors.gender = 'Gender is required';
+      }
+      if (!fullStackInput.checked) {
+        errors.fullStack = 'Please select if you are a Full Stack Developer';
+      }
+      if (ageInput.value.trim() === '') {
+        errors.age = 'Age is required';
+      }
+      if (Object.keys(errors).length > 0) {
+        alert('Please fill in all required fields.');
+        return false; 
+      }
+      alert('Successfully submitted');
+    }
+    document.getElementById('myForm').addEventListener('submit', validateForm);
+    </script>
+    </body>
+</html>
