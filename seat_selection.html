@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Seat Selection</title>
+    <style>
+        .seat {
+            width: 20px;
+            height: 20px;
+            margin: 5px;
+            background-color: #444;
+            display: inline-block;
+        }
+        .seat.selected {
+            background-color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <div id="stadium">
+        <!-- Seats will be added here by JavaScript -->
+    </div>
+    <button id="book">Book Selected Seats</button>
+
+    <script>
+        // Number of seats in the stadium
+        var numSeats = 100;
+
+        // Get the stadium element
+        var stadium = document.getElementById('stadium');
+
+        // Create the seats
+        for (var i = 0; i < numSeats; i++) {
+            var seat = document.createElement('div');
+            seat.className = 'seat';
+            seat.addEventListener('click', function() {
+                this.classList.toggle('selected');
+            });
+            stadium.appendChild(seat);
+        }
+
+        // Handle the book button click
+        document.getElementById('book').addEventListener('click', function() {
+            var selectedSeats = document.querySelectorAll('.seat.selected');
+            alert('You have booked ' + selectedSeats.length + ' seat(s).');
+        });
+    </script>
+</body>
+</html>

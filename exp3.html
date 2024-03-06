@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery AJAX Demo</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>GitHub User Search</h1>
+    <input type="text" id="username" placeholder="Enter GitHub username">
+    <button id="searchBtn">Search</button>
+    <div id="userInfo"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#searchBtn').click(function() {
+                var username = $('#username').val();
+                if (username !== '') {
+                    $.ajax({
+                        url: 'https://api.github.com/users/' + username,
+                        dataType: 'json',
+                        success: function(data) {
+                            var userInfo = '<h2>' + data.login + '</h2>' +
+                                            '<img src="' + data.avatar_url + '" alt="' + data.login + '" width="100">' +
+                                            '<p>Followers: ' + data.followers + '</p>' +
+                                            '<p>Following: ' + data.following + '</p>' +
+                                            '<p>Public Repository: ' + data.public_repos + '</p>';
+                            $('#userInfo').html(userInfo);
+                        },
+                        error: function(xhr, textStatus, errorThrown) {
+                            $('#userInfo').html('<p>User not found.</p>');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stadium Ticket Booking</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-image: url('stadium.jpg');
+            background-size: cover;
+            color: white;
+            text-align: center;
+        }
+        #booking-form {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.9);
+            color: black;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 15px;
+            box-shadow: 10px 10px 5px grey;
+            animation: slideIn 2s ease;
+        }
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        #booking-form label {
+            font-weight: bold;
+        }
+        #booking-form .form-group {
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to our Stadium! 🏟️</h1>
+    <p>Ready to cheer for your favorite team? Book your tickets now!</p>
+    <div id="booking-form">
+        <h2>Book Your Tickets 🎟️</h2>
+        <form onsubmit="event.preventDefault(); handleFormSubmit();">
+            <div class="form-group">
+                <label for="match">Select Match:</label>
+                <select id="match">
+                    <option value="ind-aus">India vs Australia</option>
+                    <option value="ind-eng">India vs England</option>
+                    <option value="ind-sa">India vs South Africa</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Select Date:</label>
+                <input type="date" id="date">
+            </div>
+            <div class="form-group">
+                <label for="class">Select Class:</label>
+                <select id="class">
+                    <option value="a1">A1</option>
+                    <option value="a2">A2</option>
+                    <option value="b1">B1</option>
+                    <option value="b2">B2</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" min="1">
+            </div>
+            <button type="submit">Book Tickets</button>
+        </form>
+    </div>
+    <script>
+        function handleFormSubmit() {
+            var match = document.getElementById('match').value;
+            var date = document.getElementById('date').value;
+            var classType = document.getElementById('class').value;
+            var quantity = document.getElementById('quantity').value;
+
+            if (!match || !date || !classType || !quantity) {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            // Redirect to the seat selection page
+            window.location.href = 'seat_selection.html';
+        }
+    </script>
+</body>
+</html>
