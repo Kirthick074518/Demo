@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jQuery AJAX Demo</title>
+    <title>GitHub User Details</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h1>GitHub User Search</h1>
+    <h1>GitHub User Details</h1>
     <input type="text" id="username" placeholder="Enter GitHub username">
     <button id="searchBtn">Search</button>
     <div id="userInfo"></div>
@@ -17,24 +17,34 @@
             $('#searchBtn').click(function() {
                 var username = $('#username').val();
                 if (username !== '') {
-                    $.ajax({
-                        url: 'https://api.github.com/users/' + username,
-                        dataType: 'json',
-                        success: function(data) {
-                            var userInfo = '<h2>' + data.login + '</h2>' +
-                                            '<img src="' + data.avatar_url + '" alt="' + data.login + '" width="100">' +
-                                            '<p>Followers: ' + data.followers + '</p>' +
-                                            '<p>Following: ' + data.following + '</p>' +
-                                            '<p>Public Repository: ' + data.public_repos + '</p>';
-                            $('#userInfo').html(userInfo);
-                        },
-                        error: function(xhr, textStatus, errorThrown) {
-                            $('#userInfo').html('<p>User not found.</p>');
-                        }
-                    });
+                    getUserDetails(username);
                 }
             });
         });
+
+        function getUserDetails(username) {
+            $.ajax({
+                url: 'https://api.github.com/users/' + username,
+                dataType: 'json',
+                success: function(data) {
+                    var userDetails = '<h2>' + data.login + '</h2>' +
+                                        '<img src="' + data.avatar_url + '" alt="' + data.login + '" width="100">' +
+                                        '<p>Followers: ' + data.followers + '</p>' +
+                                        '<p>Following: ' + data.following + '</p>' +
+                                        '<p>Public Repos: ' + data.public_repos + '</p>' +
+                                        '<p>Email: ' + (data.email || 'Not available') + '</p>' +
+                                        '<p>Bio: ' + (data.bio || 'Not available') + '</p>' +
+                                        '<p>Location: ' + (data.location || 'Not available') + '</p>' +
+                                        '<p>URL: <a href="' + data.html_url + '" target="_blank">' + data.html_url + '</a></p>' +
+                                        '<p>Twitter: ' + (data.twitter_username || 'Not available') + '</p>' +
+                                        '<p>Company: ' + (data.company || 'Not available') + '</p>';
+                    $('#userInfo').html(userDetails);
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    $('#userInfo').html('<p>User not found.</p>');
+                }
+            });
+        }
     </script>
 </body>
 </html>
